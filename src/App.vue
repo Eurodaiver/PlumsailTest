@@ -159,18 +159,22 @@
         <v-row v-if="searchResults.length == 0" justify="center" class="my-3">
           <v-col cols="12" md="6">
             <h3 align="center">Please enter text and press Enter to search</h3>
+          </v-col>
+        </v-row>
+        <v-row v-if="searchResults.length > 0" justify="center" class="my-3">
+          <h3>Found {{searchResults.length}} matches</h3>
+        </v-row>
+        <v-row justify="center" class="my-3">
+          <v-col cols="12" md="6">            
             <v-text-field
               v-model="searchStr"
               solo-inverted
               prepend-inner-icon="mdi-magnify"
               label="Search"
-              class="ma-3"
-              @keyup.enter="SearchObjects(searchStr)"
+              class="ma-3 hidden-md-and-up"
+              @keyup.enter="SearchObjects(searchStr);"
             ></v-text-field>
           </v-col>
-        </v-row>
-        <v-row v-else justify="center" class="my-3">
-          <h3>Found {{searchResults.length}} matches</h3>
         </v-row>
         <v-row v-if="searching" justify="center" class="mt-5">
           <v-progress-circular color="blue" indeterminate size="50"></v-progress-circular>
@@ -243,7 +247,7 @@
 
 <script>
 import axios from "axios";
-axios.defaults.baseURL = "https://plumsailtestapi.azurewebsites.net"; //"http://localhost:5000/";
+axios.defaults.baseURL = "https://plumsailtestapi.azurewebsites.net"; //"http://localhost:5000/"; //
 export default {
   props: {
     source: String,
